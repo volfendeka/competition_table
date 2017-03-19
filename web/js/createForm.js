@@ -1,0 +1,7 @@
+var createForm = {
+
+    removeTeamBox: function () {
+
+    },
+
+}
