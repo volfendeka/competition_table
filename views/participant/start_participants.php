@@ -37,14 +37,6 @@ $this->params['breadcrumbs'][] = $this->title;
         //'filterModel' => $searchModel,
         'summary' => '',
         'columns' => [
-            /*
-            ['class' => 'yii\grid\SerialColumn',
-                'contentOptions'=>['id'=>'num-column'],
-            ],
-            */
-            //'participant_id',
-            //'team_id',
-
             [
                 'attribute'=>'shturm_zabig',
                 'width'=>'150px',

@@ -13,7 +13,15 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="participants-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+        <div>
+            <h3 class="centered"><?php
+                echo "<p>Чемпіонат </p>";
+                echo "<p>з пожежно-прикладного спорту </p>";
+                echo "<p>в Тернопільській області</p>";
+                ?>
+            </h3>
+            <h2 class="centered">Стартовий протокол (командні види)</h2>
+        </div>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

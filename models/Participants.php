@@ -171,11 +171,13 @@ class Participants extends \yii\db\ActiveRecord
         $participants = (new Query())
             ->select(['participant_id','team_id'])
             ->from('participants')
+            ->orderBy('participant_id')
             ->all();
 
         $teams = (new Query())
             ->select('*')
             ->from('teams')
+            ->orderBy('team_id')
             ->all();
 
         $zabigu_amount = ceil(count($participants)/4);

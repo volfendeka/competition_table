@@ -241,12 +241,47 @@ class TeamController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
+    public function actionView_general_results(){
+        $searchModel = new TeamsSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('general_result', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
 
     public function actionView_start(){
         $searchModel = new TeamsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('start_team', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionView_teams_by_zabig($zabig_number){
+        $zabig = 'team_zabig';
+        $view_file = 'editable_index';
+        $searchModel = new TeamsSearch();
+        $dataProvider = $searchModel->search(['TeamsSearch' => [$zabig => $zabig_number]]);
+        if(Yii::$app->request->post('hasEditable')){
+            $team_id = Yii::$app->request->post('editableKey');
+            $team = Teams::findOne($team_id);
+            $out = Json::encode(['output' =>  '', 'message' => '']);
+            $post = [];
+            $posted = current($_POST['Teams']);
+            $post['Teams'] = $posted;
+            if($team->load($post)){
+                $team->save();
+                $output = 'обновлено';
+                $out = Json::encode(['output' =>  $output, 'message' => '']);
+            }
+            echo $out;
+            return;
+        }
+        return $this->render($view_file, [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);

@@ -12,7 +12,15 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="teams-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div>
+        <h3 class="centered"><?php
+            echo "<p>Чемпіонат </p>";
+            echo "<p>з пожежно-прикладного спорту </p>";
+            echo "<p>в Тернопільській області</p>";
+            ?>
+        </h3>
+        <h2 class="centered">Результати (командні види)</h2>
+    </div>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -28,8 +36,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ]
         ],
         'columns' => [
-
-            //'team_id',
 
             ['class' => 'kartik\grid\SerialColumn',
                 'contentOptions'=>['id'=>'num-column'],

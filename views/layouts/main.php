@@ -48,7 +48,7 @@ AppAsset::register($this);
             'options' => ['class' => 'navbar-nav navbar-right'],
             'items' => [
                 ['label' => 'Створити', 'url' => ['/team/create'],],
-                ['label' => 'Стартові протоколи',
+                ['label' => 'Стартові',
                     'items' => [
                         ['label' => 'Штурмовка', 'url' => ['/participant/view_start?title=1']],
                         ['label' => '100 метрів', 'url' => ['/participant/view_start?title=2']],
@@ -70,9 +70,9 @@ AppAsset::register($this);
                         ['label' => 'Особисті',
                             'url' => ['/participant/view_results'],
                             'items' => [
-                                ['label' => 'Штурмовка', 'url' => ['/participant/view_shturm_results']],
-                                ['label' => '100 метрів', 'url' => ['/participant/view_sto_metriv_results']],
-                                ['label' => 'Двоборство', 'url' => ['/participant/view_dvoborstvo_results']],
+                                ['label' => 'Штурмовка', 'url' => ['/participant/view_shturm_results?sort=shturm_result']],
+                                ['label' => '100 метрів', 'url' => ['/participant/view_sto_metriv_results?sort=sto_metriv_result']],
+                                ['label' => 'Двоборство', 'url' => ['/participant/view_dvoborstvo_results?sort=dvoborstvo_result']],
                             ],
                         ],
                         ['label' => 'Командні',
@@ -80,6 +80,7 @@ AppAsset::register($this);
                             'items' => [
                                 ['label' => 'Особисті види', 'url' => ['/team/view_personal_results']],
                                 ['label' => 'Командні види', 'url' => ['/team/view_team_results']],
+                                ['label' => 'Підсумковий', 'url' => ['/team/view_general_results?sort=result_result']],
                             ],
                         ],
                     ],
@@ -100,6 +101,10 @@ AppAsset::register($this);
                 ['label' => '100 забіг №:',
                     'items' =>
                         Teams::getZabigu('sto_metriv'),
+                ],
+                ['label' => 'К/з',
+                    'items' =>
+                        Teams::getTeamZabigu(),
                 ],
                 ['label' => 'Командні види', 'url' => ['/team/edit_teams']],
                 ['label' => 'Logout', 'url' => ['/site/logout'],],

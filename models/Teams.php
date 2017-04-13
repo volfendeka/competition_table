@@ -243,7 +243,7 @@ class Teams extends \yii\db\ActiveRecord
             ->all();
 
         foreach ($teams as $team){
-            $items[$counter] = ['label' => $team['team_name'], 'url' => ["/participant/view_participants_by_team/{$team['team_id']}&sort=doroga_number"]];
+            $items[$counter] = ['label' => $team['team_name'], 'url' => ["/participant/view_participants_by_team/{$team['team_id']}"]];
             $counter++;
         }
         return $items;
@@ -259,6 +259,21 @@ class Teams extends \yii\db\ActiveRecord
 
         for($i=1; $i <= $max_zabig[$vud_zabig]; $i++){
             $items[$i] = ['label' => $i, 'url' => ["/participant/view_participants_by_zabig?vud={$vud}&zabig_number={$i}&sort=doroga_number"]];
+        }
+
+        return $items = $items ?? [];
+    }
+
+    public static function getTeamZabigu(){
+        $vud_zabig = 'team_zabig';
+        $max_zabig = (new Query())
+            ->select(["{$vud_zabig}"])
+            ->from('teams')
+            ->orderBy("{$vud_zabig} DESC")
+            ->one();
+
+        for($i=1; $i <= $max_zabig[$vud_zabig]; $i++){
+            $items[$i] = ['label' => $i, 'url' => ["/team/view_teams_by_zabig?zabig_number={$i}"]];
         }
 
         return $items = $items ?? [];

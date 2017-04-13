@@ -17,13 +17,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
         'pjax' => true,
         'export' => false,
         'summary' => '',
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn',
-                'contentOptions'=>['id'=>'num-column'],
+            [
+                'attribute' => 'doroga_number',
+                'format' => 'text',
+                'label' => 'Доріжка',
             ],
             [
                 'attribute' => 'team_name',

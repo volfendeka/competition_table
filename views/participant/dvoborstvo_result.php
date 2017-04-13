@@ -12,16 +12,34 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="participants-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <div>
+        <h3 class="centered"><?php
+            echo "<p>Чемпіонат </p>";
+            echo "<p>з пожежно-прикладного спорту </p>";
+            echo "<p>в Тернопільській області</p>";
+            ?>
+        </h3>
+        <h2 class="centered">
+            <?php
+            echo "<p>Протокол </p>";
+            ?>
+        </h2>
+        <h5 class="centered">
+            <?php
+            echo "<p>Двоборство</p>";
+            ?>
+        </h5>
+    </div>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'summary' => '',
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn',
-                'contentOptions'=>['id'=>'num-column'],],
-
+            [
+                'attribute' => 'dvoborstvo_result',
+                'format' => 'text',
+                'label' => 'Місце',
+            ],
             [
                 'attribute' => 'last_name',
                 'format' => 'text',
@@ -46,11 +64,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'dvoborstvo',
                 'format' => 'text',
                 'label' => 'Сумарний час',
-            ],
-            [
-                'attribute' => 'dvoborstvo_result',
-                'format' => 'text',
-                'label' => 'Місце',
             ],
             ['class' => 'yii\grid\ActionColumn'],
 

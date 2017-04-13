@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
             echo "<p>в Тернопільській області</p>";
             ?>
         </h3>
-        <h2 class="centered">Результати (особисті види)</h2>
+        <h2 class="centered">Підсумковий</h2>
     </div>
 
     <?= GridView::widget([
@@ -28,24 +28,35 @@ $this->params['breadcrumbs'][] = $this->title;
         'beforeHeader'=>[
             [
                 'columns'=>[
-                    ['content'=>'', 'options'=>['colspan'=>2, 'class'=>'text-center warning']],
+                    ['content'=>'', 'options'=>['colspan'=>3, 'class'=>'text-center warning']],
                     ['content'=>'100 метрів', 'options'=>['colspan'=>2, 'class'=>'text-center warning']],
                     ['content'=>'Штурмова', 'options'=>['colspan'=>2, 'class'=>'text-center warning']],
                     ['content'=>'Двоборство', 'options'=>['colspan'=>2, 'class'=>'text-center warning']],
+                    ['content'=>'Висувна', 'options'=>['colspan'=>2, 'class'=>'text-center warning']],
+                    ['content'=>'Естафета', 'options'=>['colspan'=>2, 'class'=>'text-center warning']],
+                    ['content'=>'Бойове', 'options'=>['colspan'=>2, 'class'=>'text-center warning']],
                 ],
             ]
         ],
         'columns' => [
 
-            ['class' => 'kartik\grid\SerialColumn',
-                'contentOptions'=>['id'=>'num-column'],
+            [
+                'attribute' => 'result_result',
+                'format' => 'text',
+                'label' => 'Місце',
             ],
 
             [
                 'attribute' => 'team_name',
                 'format' => 'text',
-                'label' => 'Назва команди',
+                'label' => 'Команда',
             ],
+            [
+                'attribute' => 'result',
+                'format' => 'text',
+                'label' => 'Бали',
+            ],
+
             [
                 'attribute' => 'sto_metriv',
                 'format' => 'text',
@@ -73,6 +84,36 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'dvoborstvo_result',
+                'format' => 'text',
+                'label' => 'Місце',
+            ],
+            [
+                'attribute' => 'tru_kolinna',
+                'format' => 'text',
+                'label' => 'Час',
+            ],
+            [
+                'attribute' => 'tru_kolinna_result',
+                'format' => 'text',
+                'label' => 'Місце',
+            ],
+            [
+                'attribute' => 'estafeta',
+                'format' => 'text',
+                'label' => 'Час',
+            ],
+            [
+                'attribute' => 'estafeta_result',
+                'format' => 'text',
+                'label' => 'Місце',
+            ],
+            [
+                'attribute' => 'boyove',
+                'format' => 'text',
+                'label' => 'Час',
+            ],
+            [
+                'attribute' => 'boyove_result',
                 'format' => 'text',
                 'label' => 'Місце',
             ],
