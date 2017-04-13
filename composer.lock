@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "7440c416efb9c75189290f4076bb6fd6",
+    "content-hash": "6ac840d1da1f4c5c6f2039cb77589e90",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -1839,6 +1839,53 @@
                 "mailer"
             ],
             "time": "2017-02-13T07:52:53+00:00"
+        },
+        {
+            "name": "yii2tech/csv-grid",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yii2tech/csv-grid.git",
+                "reference": "5420327c98bdba3054ea4d5811effa237b6415fe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yii2tech/csv-grid/zipball/5420327c98bdba3054ea4d5811effa237b6415fe",
+                "reference": "5420327c98bdba3054ea4d5811effa237b6415fe",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "yii2tech\\csvgrid\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Paul Klimov",
+                    "email": "klimov.paul@gmail.com"
+                }
+            ],
+            "description": "Yii2 extension data export to CSV file",
+            "keywords": [
+                "csv",
+                "export",
+                "large data",
+                "yii2"
+            ],
+            "time": "2016-06-28T09:26:12+00:00"
         },
         {
             "name": "yiisoft/yii2",

@@ -50,8 +50,8 @@ AppAsset::register($this);
                 ['label' => 'Створити', 'url' => ['/team/create'],],
                 ['label' => 'Стартові протоколи',
                     'items' => [
-                        ['label' => 'Штурмовка', 'url' => ['/participant/view_start?title=1&sort=shturm_zabig']],
-                        ['label' => '100 метрів', 'url' => ['/participant/view_start?title=2&sort=sto_metriv_zabig']],
+                        ['label' => 'Штурмовка', 'url' => ['/participant/view_start?title=1']],
+                        ['label' => '100 метрів', 'url' => ['/participant/view_start?title=2']],
                         ['label' => 'Команди', 'url' => ['/team/view_start?sort=team_zabig']],
                     ],
                 ],

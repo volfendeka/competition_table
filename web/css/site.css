@@ -113,3 +113,10 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+.centered{
+    text-align: center;
+}
+.right_title{
+    text-align: right;
+}

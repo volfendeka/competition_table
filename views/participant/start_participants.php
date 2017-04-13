@@ -13,8 +13,24 @@ $this->title = $title;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="participants-index">
+    <div>
+        <h3 class="centered"><?php
+            echo "<p>Чемпіонат </p>";
+            echo "<p>з пожежно-прикладного спорту </p>";
+            echo "<p>в Тернопільській області</p>";
+            ?>
+        </h3>
+        <h1 class="centered"><?php
+            echo Html::encode($this->title);
+            ?>
+        </h1>
+        <h6 class="right_title">
+            <?php
+            echo $title_vud;
+            ?>
+        </h6>
+    </div>
 
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -25,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn',
                 'contentOptions'=>['id'=>'num-column'],
             ],
-*/
+            */
             //'participant_id',
             //'team_id',
 
@@ -66,30 +82,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 'label' => 'Команда',
             ],
-            /*
-            [
-                'attribute' => 'shturm_result',
-                'format' => 'text',
-                'label' => 'Штурм Результат',
-            ],
-            [
-                'attribute' => 'sto_metriv_result',
-                'format' => 'text',
-                'label' => '100 Результат',
-            ],
-            [
-                'attribute' => 'dvoborstvo_result',
-                'format' => 'text',
-                'label' => 'Двоб Результат',
-            ],
-            [
-                'attribute' => 'sto_metriv_zabig',
-                'format' => 'text',
-                'label' => '100 забіг№',
-            ],
-
-            ['class' => 'yii\grid\ActionColumn'],
-             */
         ],
     ]);
 

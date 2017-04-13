@@ -90,21 +90,12 @@ class Teams extends \yii\db\ActiveRecord
 
     public function getTeamsTimes($vud){
 
-//        $max = Participants::find()->max($vud);
 
         $all_participants = (new Query())
             ->select([$vud, 'participant_id'])
             ->from('participants')
             ->all();
-/*
-        foreach ($all_participants as $participant){
-            if($participant[$vud] == null || $participant[$vud] == 0){
-                Yii::$app->db->createCommand()
-                    ->update('participants', [$vud => $max+10], "participant_id = {$participant['participant_id']}")
-                    ->execute();
-            }
-        }
-*/
+
         $teams = (new Query())
             ->select(['team_id'])
             ->from('teams')
@@ -124,6 +115,8 @@ class Teams extends \yii\db\ActiveRecord
                     $rows = (new Query())
                         ->select([$vud])
                         ->from('participants')
+                        ->orderBy($vud)
+                        ->limit(5)
                         ->where(['team_id' => $id])
                         ->all();
                 }
@@ -250,7 +243,7 @@ class Teams extends \yii\db\ActiveRecord
             ->all();
 
         foreach ($teams as $team){
-            $items[$counter] = ['label' => $team['team_name'], 'url' => ["/participant/view_participants_by_team/{$team['team_id']}"]];
+            $items[$counter] = ['label' => $team['team_name'], 'url' => ["/participant/view_participants_by_team/{$team['team_id']}&sort=doroga_number"]];
             $counter++;
         }
         return $items;
@@ -265,7 +258,7 @@ class Teams extends \yii\db\ActiveRecord
             ->one();
 
         for($i=1; $i <= $max_zabig[$vud_zabig]; $i++){
-            $items[$i] = ['label' => $i, 'url' => ["/participant/view_participants_by_zabig?vud={$vud}&zabig_number={$i}"]];
+            $items[$i] = ['label' => $i, 'url' => ["/participant/view_participants_by_zabig?vud={$vud}&zabig_number={$i}&sort=doroga_number"]];
         }
 
         return $items = $items ?? [];

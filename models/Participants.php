@@ -124,15 +124,29 @@ class Participants extends \yii\db\ActiveRecord
     public function getTitle($title){
         switch($title){
             case '1':
-                $title = 'Стартовий протокол Штурмовка';
+                $title = 'Стартовий протокол '; //Штурмовка
                 break;
             case '2':
-                $title = 'Стартовий протокол 100 метрів';
+                $title = 'Стартовий протокол '; //100 метрів
                 break;
             default:
                 $title = 'Стартовий протокол';
         }
         return $title;
+    }
+
+    public function getTitleVud($title){
+        switch($title){
+            case '1':
+                $title_vud = 'підйом по штурмовій драбині у вікно 4-го поверху (Штурмовка)'; //Штурмовка
+                break;
+            case '2':
+                $title_vud = 'подолання 100-метрової смуги перешкод (100-м)'; //100 метрів
+                break;
+            default:
+                $title_vud = 'Стартовий протокол';
+        }
+        return $title_vud;
     }
 
     public function getTeam_id_paire(){
@@ -310,6 +324,13 @@ class Participants extends \yii\db\ActiveRecord
             ->from('participants')
             ->all();
         return count($participants)+1;
+    }
+
+    public static function csvDataParticipants(){
+        return $teams = (new Query())
+
+                ->join('LEFT OUTER JOIN', 'teams', 'teams.team_id = participants.team_id')
+                ->all();
     }
 
 
