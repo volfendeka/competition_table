@@ -75,22 +75,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'text',
                 'label' => 'Місце',
             ],
-            /*
-
-            [
-                'attribute' => 'sto_metriv_zabig',
-                'format' => 'text',
-                'label' => '100 забіг№',
-            ],
-            [
-                'attribute' => 'shturm_zabig',
-                'format' => 'text',
-                'label' => 'штурм забіг№',
-            ],
-            ['class' => 'yii\grid\ActionColumn'],
-            */
-
-
         ],
     ]);
 

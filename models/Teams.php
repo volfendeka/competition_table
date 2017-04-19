@@ -20,6 +20,8 @@ use yii\db\Query;
  * @property int $sto_metriv_result
  * @property double $dvoborstvo
  * @property int $dvoborstvo_result
+ * @property double $tru_kolinna_1
+ * @property double $tru_kolinna_2
  * @property double $tru_kolinna
  * @property int $tru_kolinna_result
  * @property int $doroga_number
@@ -44,7 +46,7 @@ class Teams extends \yii\db\ActiveRecord
     {
         return [
             [['team_name',], 'required'],
-            [['estafeta', 'boyove', 'shturm', 'sto_metriv', 'dvoborstvo', 'tru_kolinna'], 'number'],
+            [['estafeta', 'boyove', 'shturm', 'sto_metriv', 'dvoborstvo', 'tru_kolinna_1', 'tru_kolinna_2', 'tru_kolinna'], 'number'],
             [['result', 'result_result', 'doroga_number', 'team_zabig'], 'integer'],
             [['team_name'], 'string', 'max' => 30],
         ];
@@ -63,6 +65,8 @@ class Teams extends \yii\db\ActiveRecord
             'shturm' => 'Штурмовка',
             'sto_metriv' => '100 метрів',
             'dvoborstvo' => 'Двоборство',
+            'tru_kolinna_1' => 'Висувна 1 спроба',
+            'tru_kolinna_2' => 'Висувна 2 спроба',
             'tru_kolinna' => 'Висувна',
             'estafeta_result' => 'Естафета місце',
             'boyove_result' => 'Бойове місце',
@@ -80,12 +84,30 @@ class Teams extends \yii\db\ActiveRecord
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
-
-
+            $this->compareTries('tru_kolinna_1', 'tru_kolinna_2', 'tru_kolinna');
             return true;
         } else {
             return false;
         }
+    }
+
+    public function compareTries($try_1, $try_2, $vud){
+        if($this->{$try_1} == 0 ){
+            $this->{$vud} = $this->{$try_2};
+        }
+        elseif($this->{$try_2} == 0 ){
+            $this->{$vud} = $this->{$try_1};
+        }
+        elseif($this->{$try_1} == $this->{$try_2}) {
+            $this->{$vud} = $this->{$try_1};
+        }
+        elseif($this->{$try_1} > $this->{$try_2}) {
+            $this->{$vud} = $this->{$try_2};
+        }
+        elseif($this->{$try_1} < $this->{$try_2}) {
+            $this->{$vud} = $this->{$try_1};
+        }
+
     }
 
     public function getTeamsTimes($vud){
@@ -273,7 +295,7 @@ class Teams extends \yii\db\ActiveRecord
             ->one();
 
         for($i=1; $i <= $max_zabig[$vud_zabig]; $i++){
-            $items[$i] = ['label' => $i, 'url' => ["/team/view_teams_by_zabig?zabig_number={$i}"]];
+            $items[$i] = ['label' => $i, 'url' => ["/team/view_teams_by_zabig?zabig_number={$i}&sort=doroga_number"]];
         }
 
         return $items = $items ?? [];

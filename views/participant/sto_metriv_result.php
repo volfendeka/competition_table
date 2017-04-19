@@ -34,6 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'summary' => '',
+        'panel'=>['type'=>'', 'heading'=>''],
         'columns' => [
             [
                 'attribute' => 'sto_metriv_result',

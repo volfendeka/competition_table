@@ -86,8 +86,6 @@ class Participants extends \yii\db\ActiveRecord
             $this->compareTries('shturm_try_1', 'shturm_try_2', 'shturm');
             $this->compareTries('sto_metriv_try_1', 'sto_metriv_try_2', 'sto_metriv');
 
-            $this->getDvoborstvo();
-
             return true;
         } else {
             return false;
@@ -115,10 +113,24 @@ class Participants extends \yii\db\ActiveRecord
     }
 
     public function getDvoborstvo(){
-        $this->dvoborstvo = ($this->shturm != null &&
-            $this->shturm != 0 &&
-            $this->sto_metriv != null &&
-            $this->sto_metriv != 0)?$this->shturm + $this->sto_metriv: 0;
+
+        $participants = (new Query())
+            ->select(['participant_id', 'shturm', 'sto_metriv'])
+            ->from('participants')
+            ->all();
+
+        foreach ($participants as $participant) {
+            $dvoborstvo = ($participant['shturm'] != null &&
+                $participant['shturm'] != 0 &&
+                $participant['sto_metriv'] != null &&
+                $participant['sto_metriv'] != 0)?$participant['shturm'] + $participant['sto_metriv']: 0;
+
+            Yii::$app->db->createCommand()
+                ->update('participants', ['dvoborstvo' => $dvoborstvo],
+                "participant_id = {$participant['participant_id']}")
+                ->execute();
+        }
+        return $participants;
     }
 
     public function getTitle($title){

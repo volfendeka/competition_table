@@ -183,35 +183,6 @@ class TeamController extends Controller
     }
 
 
-    public function actionEdit_teams(){
-
-        $searchModel = new TeamsSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        if(Yii::$app->request->post('hasEditable')){
-            $team_id = Yii::$app->request->post('editableKey');
-            $team = Teams::findOne($team_id);
-
-            $out = Json::encode(['output' =>  '', 'message' => '']);
-            $post = [];
-            $posted = current($_POST['Teams']);
-            $post['Teams'] = $posted;
-
-            if($team->load($post)){
-                $team->save();
-                $output = 'обновлено';
-                $out = Json::encode(['output' =>  $output, 'message' => '']);
-            }
-            echo $out;
-            return;
-        }
-
-        return $this->render('editable_index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
-    }
-
     public function actionView_results(){
         $searchModel = new TeamsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -275,13 +246,59 @@ class TeamController extends Controller
             $post['Teams'] = $posted;
             if($team->load($post)){
                 $team->save();
-                $output = 'обновлено';
+                if(isset($posted['boyove'])){
+                    $output = $posted['boyove'];
+                }elseif (isset($posted['estafeta'])) {
+                    $output = $posted['estafeta'];
+                }elseif (isset($posted['tru_kolinna'])) {
+                    $output = $posted['tru_kolinna'];
+                }else{
+                    $output = '';
+                }
                 $out = Json::encode(['output' =>  $output, 'message' => '']);
             }
             echo $out;
             return;
         }
         return $this->render($view_file, [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+
+    public function actionEdit_teams(){
+
+        $searchModel = new TeamsSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        if(Yii::$app->request->post('hasEditable')){
+            $team_id = Yii::$app->request->post('editableKey');
+            $team = Teams::findOne($team_id);
+            $out = Json::encode(['output' =>  '', 'message' => '']);
+            $post = [];
+            $posted = current($_POST['Teams']);
+            $post['Teams'] = $posted;
+            if($team->load($post)){
+                $team->save();
+                if(isset($posted['boyove'])){
+                    $output = $posted['boyove'];
+                }elseif (isset($posted['estafeta'])) {
+                    $output = $posted['estafeta'];
+                }elseif (isset($posted['tru_kolinna_1'])) {
+                    $output = $posted['tru_kolinna_1'];
+                }elseif (isset($posted['tru_kolinna_2'])) {
+                    $output = $posted['tru_kolinna_2'];
+                }else{
+                    $output = '';
+                }
+                $out = Json::encode(['output' =>  $output, 'message' => '']);
+            }
+            echo $out;
+            return;
+        }
+
+        return $this->render('editable_index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);

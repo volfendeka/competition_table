@@ -73,7 +73,6 @@ $this->params['breadcrumbs'][] = $this->title;
     if(isset($var)){
         echo "<pre>";
         var_dump($var);
-
     }
     ?>
 </div>

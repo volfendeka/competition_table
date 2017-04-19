@@ -20,7 +20,7 @@ class TeamsSearch extends Teams
         return [
             [['team_id', 'result', 'result_result', 'doroga_number', 'team_zabig'], 'integer'],
             [['team_name'], 'safe'],
-            [['estafeta', 'boyove', 'shturm', 'sto_metriv', 'dvoborstvo', 'tru_kolinna'], 'number'],
+            [['estafeta', 'boyove', 'shturm', 'sto_metriv', 'dvoborstvo', 'tru_kolinna_1', 'tru_kolinna_2', 'tru_kolinna',], 'number'],
         ];
     }
 
@@ -66,6 +66,8 @@ class TeamsSearch extends Teams
             'shturm' => $this->shturm,
             'sto_metriv' => $this->sto_metriv,
             'dvoborstvo' => $this->dvoborstvo,
+            'tru_kolinna_1' => $this->tru_kolinna_1,
+            'tru_kolinna_2' => $this->tru_kolinna_2,
             'tru_kolinna' => $this->tru_kolinna,
             'estafeta_result' => $this->estafeta_result,
             'boyove_result' => $this->boyove_result,

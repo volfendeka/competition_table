@@ -180,7 +180,17 @@ class ParticipantController extends Controller
             $post['Participants'] = $posted;
             if($participant->load($post)){
                 $participant->save();
-                $output = 'обновлено';
+                if(isset($posted['sto_metriv_try_1'])){
+                    $output = $posted['sto_metriv_try_1'];
+                }elseif (isset($posted['sto_metriv_try_2'])) {
+                    $output = $posted['sto_metriv_try_2'];
+                }elseif (isset($posted['shturm_try_1'])) {
+                    $output = $posted['shturm_try_1'];
+                }elseif (isset($posted['shturm_try_2'])) {
+                    $output = $posted['shturm_try_2'];
+                }else{
+                    $output = '';
+                }
                 $out = Json::encode(['output' =>  $output, 'message' => '']);
             }
             echo $out;
@@ -196,7 +206,6 @@ class ParticipantController extends Controller
         $team_model->getTeamsTimes('shturm');
         $team_model->getTeamsTimes('sto_metriv');
         $team_model->getTeamsTimes('dvoborstvo');
-        $team_model->setResult(['sto_metriv', 'shturm', 'dvoborstvo'], 'participant');
         $team_model->setResult(['estafeta', 'boyove', 'shturm', 'sto_metriv', 'dvoborstvo', 'tru_kolinna'], 'team');
         $team_model->getPlaces();
         $team_model->setFinalResult('result','team', 'estafeta');
@@ -206,33 +215,22 @@ class ParticipantController extends Controller
         $team_model = new Teams();
         $team_model->getTeamsTimes('shturm');
         $team_model->setResult(['shturm'], 'participant');
-        /*
-        $team_model->setResult(['shturm'], 'team');
-        $team_model->getPlace();
-        $team_model->setResult(['result'],'team');
-*/
+
         return $this->redirect(['team/view_results']);
     }
     public function actionGet_result_sto_metriv(){
         $team_model = new Teams();
         $team_model->getTeamsTimes('sto_metriv');
         $team_model->setResult(['sto_metriv'], 'participant');
-        /*
-        $team_model->setResult(['sto_metriv'], 'team');
-        $team_model->getPlace();
-        $team_model->setResult(['result'],'team');
-*/
+
         return $this->redirect(['team/view_results']);
     }
     public function actionGet_result_dvoborstvo(){
+        $participant_model = new Participants();
+        $participant_model->getDvoborstvo();
         $team_model = new Teams();
-        $team_model->getTeamsTimes('dvoborstvo');
-        $team_model->setResult(['dvoborstvo'], 'participant');
-        /*
-        $team_model->setResult(['dvoborstvo'], 'team');
-        $team_model->getPlace();
-        $team_model->setResult(['result'],'team');
-*/
+        $team_model->setResult(['sto_metriv', 'shturm', 'dvoborstvo'], 'participant');
+
         return $this->redirect(['team/view_results']);
     }
     public function actionView_results(){
