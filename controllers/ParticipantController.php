@@ -24,22 +24,25 @@ class ParticipantController extends Controller
         return [
             'access' =>[
                 'class' => AccessControl::className(),
-                'only' => ['create', 'index', 'event',
-                    'view_start',
-                    'view_shturm_results',
-                    'view_sto_metriv_results',
-                    'view_dvoborstvo_results',
-                    'view_participants_by_team',
-                    'view_participants_by_zabig',
+                'only' => ['create', 'index',
+                    'event',
                     'generate_zabigu',
-                    'get_result_shturm',
-                    'get_result_sto_metriv',
-                    'get_result_dvoborstvo',
-                    'get_results',
                     'add_where_zero'
                 ],
                 'rules' => [
                     [
+                        'actions' => [
+                            'view_start',
+                            'view_shturm_results',
+                            'view_sto_metriv_results',
+                            'view_dvoborstvo_results',
+                            'view_participants_by_team',
+                            'view_participants_by_zabig',
+                            'get_result_shturm',
+                            'get_result_sto_metriv',
+                            'get_result_dvoborstvo',
+                            'get_results',
+                        ],
                         'allow' => true,
                         'roles' => ['@'],
                     ]

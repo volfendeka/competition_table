@@ -28,15 +28,14 @@ class TeamController extends Controller
         return [
             'access' =>[
                 'class' => AccessControl::className(),
-                'only' => ['update', 'index', 'event',
-                    'edit_teams',
-                    'view_start',
-                    'view_personal_results',
-                    'view_team_results',
-
-                ],
+                'only' => ['update', 'index', 'event'],
                 'rules' => [
                     [
+                        'actions' => [
+                            'view_start',
+                            'view_personal_results',
+                            'view_team_results',
+                        ],
                         'allow' => true,
                         'roles' => ['@'],
                     ]

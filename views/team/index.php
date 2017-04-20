@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\TeamsSearch */
@@ -22,6 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'summary' => '',
+        'panel' => ['type' => '', 'heading' => ''],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn',
                 'contentOptions'=>['id'=>'num-column'],],

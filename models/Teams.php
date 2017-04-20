@@ -265,7 +265,7 @@ class Teams extends \yii\db\ActiveRecord
             ->all();
 
         foreach ($teams as $team){
-            $items[$counter] = ['label' => $team['team_name'], 'url' => ["/participant/view_participants_by_team/{$team['team_id']}"]];
+            $items[$counter] = ['label' => $team['team_name'], 'url' => ["/participant/view_participants_by_team/{$team['team_id']}?sort=participant_id"]];
             $counter++;
         }
         return $items;

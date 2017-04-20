@@ -23,7 +23,13 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['create_command', 'create'],
+                        'actions' => ['create_command', 'create',
+                            'view_shturm_results',
+                            'view_sto_metriv_results',
+                            'view_dvoborstvo_results',
+                            'view_personal_results',
+                            'view_team_results',
+                            'view_general_results'],
                         'allow' => true,
                         'roles' => ['?'],
                     ],

@@ -39,7 +39,34 @@ AppAsset::register($this);
         echo Nav::widget([
             'options' => ['class' => 'navbar-nav navbar-right'],
             'items' => [
-                ['label' => 'Створити команду', 'url' => ['/team/create']],
+                ['label' => 'Стартові протоколи',
+                    'items' => [
+                        ['label' => 'Штурмовка', 'url' => ['/participant/view_start?title=1']],
+                        ['label' => '100 метрів', 'url' => ['/participant/view_start?title=2']],
+                        ['label' => 'Команди', 'url' => ['/team/view_start?sort=team_zabig']],
+                    ],
+                ],
+                ['label' => 'Результати',
+                    'items' => [
+                        ['label' => 'Особисті',
+                            'url' => ['/participant/view_results'],
+                            'items' => [
+                                ['label' => 'Штурмовка', 'url' => ['/participant/view_shturm_results?sort=shturm_result']],
+                                ['label' => '100 метрів', 'url' => ['/participant/view_sto_metriv_results?sort=sto_metriv_result']],
+                                ['label' => 'Двоборство', 'url' => ['/participant/view_dvoborstvo_results?sort=dvoborstvo_result']],
+                            ],
+                        ],
+                        ['label' => 'Командні',
+                            'url' => ['/team/view_results'],
+                            'items' => [
+                                ['label' => 'Особисті види', 'url' => ['/team/view_personal_results']],
+                                ['label' => 'Командні види', 'url' => ['/team/view_team_results']],
+                                ['label' => 'Підсумковий', 'url' => ['/team/view_general_results?sort=result_result']],
+                            ],
+                        ],
+                    ],
+                ],
+                //['label' => 'Створити команду', 'url' => ['/team/create']],
                 ['label' => 'Login', 'url' => ['site/login'],],
             ]
         ]);

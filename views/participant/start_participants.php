@@ -36,6 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         //'filterModel' => $searchModel,
         'summary' => '',
+        'panel' => ['type' => '', 'heading' => ''],
         'columns' => [
             [
                 'attribute'=>'shturm_zabig',
